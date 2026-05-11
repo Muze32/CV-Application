@@ -1,10 +1,14 @@
 import { useState } from "react";
 import {
   personFields,
-  experienceFields,
+  expFields,
   initialPerson,
-  initialExperience,
+  initialExp,
+  practExpFields,
+  initialPractExp,
 } from "./data";
+
+//TODO: Determinar si FormField si es necesario o redundante
 
 function FormField({ type, children, value, onChange, name }) {
   return (
@@ -19,7 +23,7 @@ function FormField({ type, children, value, onChange, name }) {
 
 function FormSection({ obj, fields, handleChange }) {
   return (
-    <>
+    <div className="formSection">
       {fields.map((field, index) => {
         const value = obj[field.name];
         return (
@@ -34,7 +38,7 @@ function FormSection({ obj, fields, handleChange }) {
           </FormField>
         );
       })}
-    </>
+    </div>
   );
 }
 
@@ -45,13 +49,16 @@ export default function Form() {
     setPerson({ ...person, [e.target.name]: e.target.value });
   }
 
-  const [experience, setExperience] = useState(initialExperience);
+  const [exp, setExp] = useState(initialExp);
 
-  function handleExperienceChange(e) {
-    setExperience({
-      ...experience,
-      [e.target.name]: e.target.value,
-    });
+  function handleExpChange(e) {
+    setExp({ ...exp, [e.target.name]: e.target.value });
+  }
+
+  const [practExp, setPractExp] = useState(initialPractExp);
+
+  function handlePractExpChange(e) {
+    setPractExp({ ...practExp, [e.target.name]: e.target.value });
   }
 
   return (
@@ -62,18 +69,29 @@ export default function Form() {
         handleChange={handlePersonChange}
       ></FormSection>
 
-      <div>{person.name}</div>
-      <div>{person.email}</div>
-      <div>{person.tel}</div>
+      {Object.values(person).map((value, index) => (
+        <div key={index}>{value}</div>
+      ))}
 
       <FormSection
-        obj={experience}
-        fields={experienceFields}
-        handleChange={handleExperienceChange}
+        obj={exp}
+        fields={expFields}
+        handleChange={handleExpChange}
       ></FormSection>
-      <div>{experience.schoolName}</div>
-      <div>{experience.title}</div>
-      <div>{experience.dateOfStudy}</div>
+
+      {Object.values(exp).map((value, index) => (
+        <div key={index}>{value}</div>
+      ))}
+
+      <FormSection
+        obj={practExp}
+        fields={practExpFields}
+        handleChange={handlePractExpChange}
+      ></FormSection>
+
+      {Object.values(practExp).map((value, index) => (
+        <div key={index}>{value}</div>
+      ))}
     </>
   );
 }
