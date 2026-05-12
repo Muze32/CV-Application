@@ -2,67 +2,71 @@ import "../styles/cv.css";
 
 function InfoCV({ person }) {
   const { name, email, tel, address } = person;
+  const hasContactInfo = email || tel || address;
   return (
     <section className="infoCV">
       <h1>{name}</h1>
-      <hr />
+      {hasContactInfo && <hr />}
       <div className="contactInfo">
         <span>{address}</span>
         <span>{email}</span> <span>{tel}</span>
       </div>
-      <hr />
+      {hasContactInfo && <hr />}
     </section>
   );
 }
 
-function ExpCV({ exp }) {
-  const { title, dateOfStudy, schoolName } = exp;
+function Header({ obj, title }) {
+  const hasInfo = Object.values(obj).some(Boolean);
+
+  if (!hasInfo) return null;
+
   return (
-    <div className="expCV">
-      <div className="titleInfo">
-        <strong>{title}</strong>
-        <span>{dateOfStudy}</span>
-      </div>
-      <div>{schoolName}</div>
+    <div>
+      <hr />
+      <h2>{title}</h2>
     </div>
   );
 }
 
-function PractExpCV({ practExp }) {
-  const { positionTitle, dateStart, dateEnd, companyName, responsibilities } =
-    practExp;
+function ExpSection({ obj, sectionName, infoName }) {
+  const { organization, title, dateEnd, dateStart, responsibilities } = obj;
+
   return (
-    <div className="practExpCV">
-      <div className="posTitleInfo">
-        <strong>{positionTitle}</strong>
+    <section className={sectionName}>
+      <div className={infoName}>
+        <strong>{title}</strong>
         <span>
-          {dateStart} - {dateEnd}
+          {dateStart && `${dateStart} -`} {dateEnd}
         </span>
       </div>
-      <div>{companyName}</div>
+
+      <div>{organization}</div>
       {responsibilities && <div> Responsibilities: {responsibilities}</div>}
-    </div>
+    </section>
   );
 }
 
 function CV({ objs }) {
   const { person, exp, practExp } = objs;
+
   return (
     <div className="cv">
       <InfoCV person={person}></InfoCV>
 
-      <section>
-        <hr />
-        <h2>Educational experience</h2>
-        <ExpCV exp={exp}></ExpCV>
-      </section>
+      <Header obj={exp} title="Educational experience"></Header>
+      <ExpSection
+        obj={exp}
+        sectionName="expCV"
+        infoName="titleInfo"
+      ></ExpSection>
 
-      <section>
-        <hr />
-        <h2>Practical Experience</h2>
-        <PractExpCV practExp={practExp}></PractExpCV>
-        <hr />
-      </section>
+      <Header obj={practExp} title="Practical Experience"></Header>
+      <ExpSection
+        obj={practExp}
+        sectionName="practExpCV"
+        infoName="posTitleInfo"
+      ></ExpSection>
     </div>
   );
 }
