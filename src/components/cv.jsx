@@ -29,6 +29,22 @@ function Header({ obj, title }) {
   );
 }
 
+function DateField({ dateStart, dateEnd }) {
+  const date1 = new Date(dateStart);
+  const date2 = new Date(dateEnd);
+  const date1Str = date1.toLocaleDateString();
+  const date2Str = date2.toLocaleDateString();
+
+  if (!dateStart) return <span>{dateEnd}</span>;
+  if (date1 >= date2 || !dateEnd) return null;
+
+  return (
+    <span>
+      {date1Str} - {date2Str}
+    </span>
+  );
+}
+
 function ExpSection({ obj, sectionName, infoName }) {
   const { organization, title, dateEnd, dateStart, responsibilities } = obj;
 
@@ -36,9 +52,7 @@ function ExpSection({ obj, sectionName, infoName }) {
     <section className={sectionName}>
       <div className={infoName}>
         <strong>{title}</strong>
-        <span>
-          {dateStart && `${dateStart} -`} {dateEnd}
-        </span>
+        <DateField dateStart={dateStart} dateEnd={dateEnd}></DateField>
       </div>
 
       <div>{organization}</div>

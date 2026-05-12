@@ -1,37 +1,49 @@
 import { personFields, expFields, practExpFields } from "../data";
 import "../styles/form.css";
 
+//TODO: Los inputs no realizan validacion al ingresar informacion en ellos
+
+function FormField({ field, obj, onChange }) {
+  const { name, text, type } = field;
+  const value = obj[name];
+
+  return (
+    <label>
+      {text}:
+      {type !== "textarea" ? (
+        <input
+          type={type || "text"}
+          value={value}
+          onChange={onChange}
+          name={name}
+        />
+      ) : (
+        <textarea
+          name={name}
+          rows="3"
+          cols="40"
+          value={value}
+          onChange={onChange}
+          minLength={20}
+          maxLength={100}
+        ></textarea>
+      )}
+    </label>
+  );
+}
+
 function FormSection({ obj, fields, handleChange, children }) {
   return (
     <div className="formSection">
       <h2>{children}</h2>
-      {fields.map((field, index) => {
-        const { name, text, type } = field;
-        const value = obj[field.name];
-
-        return type !== "textarea" ? (
-          <label key={name}>
-            {text}:
-            <input
-              type={type ? field.type : "text"}
-              value={value}
-              onChange={handleChange}
-              name={name}
-            />
-          </label>
-        ) : (
-          <label key={name}>
-            {text}:
-            <textarea
-              name={name}
-              rows="3"
-              cols="40"
-              value={value}
-              onChange={handleChange}
-            ></textarea>
-          </label>
-        );
-      })}
+      {fields.map((field, index) => (
+        <FormField
+          obj={obj}
+          onChange={handleChange}
+          field={field}
+          key={index}
+        ></FormField>
+      ))}
     </div>
   );
 }

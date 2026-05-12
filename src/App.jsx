@@ -17,6 +17,7 @@ export default function App() {
 
   function handleChange(setter) {
     return (e) => {
+      e.target.reportValidity();
       setter((prev) => ({
         ...prev,
         [e.target.name]: e.target.value,
