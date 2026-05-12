@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+:root {
+    overscroll-behavior: none;
+}
+
+#root {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}

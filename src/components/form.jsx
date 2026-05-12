@@ -1,10 +1,12 @@
 import { personFields, expFields, practExpFields } from "../data";
+import "../styles/form.css";
 
-function FormSection({ obj, fields, handleChange }) {
+function FormSection({ obj, fields, handleChange, children }) {
   return (
     <div className="formSection">
+      <h2>{children}</h2>
       {fields.map((field, index) => {
-        const {name, text, type} = field;
+        const { name, text, type } = field;
         const value = obj[field.name];
 
         return (
@@ -34,19 +36,21 @@ export function Form({ objs, handlers }) {
         obj={person}
         fields={personFields}
         handleChange={handlePersonChange}
-      ></FormSection>
+      >
+        General Information
+      </FormSection>
 
-      <FormSection
-        obj={exp}
-        fields={expFields}
-        handleChange={handleExpChange}
-      ></FormSection>
+      <FormSection obj={exp} fields={expFields} handleChange={handleExpChange}>
+        Educational Experience
+      </FormSection>
 
       <FormSection
         obj={practExp}
         fields={practExpFields}
         handleChange={handlePractExpChange}
-      ></FormSection>
+      >
+        Practical Experience
+      </FormSection>
     </div>
   );
 }

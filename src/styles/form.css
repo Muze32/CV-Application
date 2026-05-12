@@ -1,0 +1,17 @@
+.form {
+    background-color: #22242a;
+    color: white;
+    padding-left: 2rem;
+}
+
+.formSection {
+    margin-bottom: 3rem;
+}
+
+.formSection > label {
+    margin-bottom: 1rem;
+}
+
+label, input {
+    display: block;
+}
