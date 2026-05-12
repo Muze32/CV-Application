@@ -2,6 +2,7 @@ const personFields = [
   { text: "Name", name: "name" },
   { text: "Email", type: "email", name: "email" },
   { text: "Telephone", type: "tel", name: "tel" },
+  {text: "Address", name: "address"}
 ];
 const expFields = [
   { text: "School name", name: "schoolName" },
@@ -12,7 +13,7 @@ const expFields = [
 const practExpFields = [
   { text: "Company name", name: "companyName" },
   { text: "Position title", name: "positionTitle" },
-  { text: "Main resposibilites of your job", name: "responsibilities" },
+  { text: "Main resposibilites of your job", name: "responsibilities", type: "textarea" },
   {
     text: "Date you started working for the company",
     name: "dateStart",
@@ -29,6 +30,7 @@ const initialPerson = {
   name: "",
   email: "",
   tel: "",
+  address: "",
 };
 
 const initialExp = {

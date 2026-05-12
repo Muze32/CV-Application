@@ -9,15 +9,26 @@ function FormSection({ obj, fields, handleChange, children }) {
         const { name, text, type } = field;
         const value = obj[field.name];
 
-        return (
+        return type !== "textarea" ? (
           <label key={name}>
-            {text}:{" "}
+            {text}:
             <input
               type={type ? field.type : "text"}
               value={value}
               onChange={handleChange}
               name={name}
             />
+          </label>
+        ) : (
+          <label key={name}>
+            {text}:
+            <textarea
+              name={name}
+              rows="3"
+              cols="40"
+              value={value}
+              onChange={handleChange}
+            ></textarea>
           </label>
         );
       })}

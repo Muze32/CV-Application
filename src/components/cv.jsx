@@ -1,21 +1,27 @@
+import "../styles/cv.css";
+
 function InfoCV({ person }) {
-  const { name, email, tel } = person;
+  const { name, email, tel, address } = person;
   return (
-    <div>
+    <section className="infoCV">
       <h1>{name}</h1>
-      <div>
+      <hr />
+      <div className="contactInfo">
+        <span>{address}</span>
         <span>{email}</span> <span>{tel}</span>
       </div>
-    </div>
+      <hr />
+    </section>
   );
 }
 
 function ExpCV({ exp }) {
   const { title, dateOfStudy, schoolName } = exp;
   return (
-    <div>
-      <div>
-        <span>{title}</span> <span>{dateOfStudy}</span>
+    <div className="expCV">
+      <div className="titleInfo">
+        <strong>{title}</strong>
+        <span>{dateOfStudy}</span>
       </div>
       <div>{schoolName}</div>
     </div>
@@ -26,15 +32,15 @@ function PractExpCV({ practExp }) {
   const { positionTitle, dateStart, dateEnd, companyName, responsibilities } =
     practExp;
   return (
-    <div>
-      <div>
-        <span>{positionTitle}</span> <span>{dateStart}</span>{" "}
-        <span>{dateEnd}</span>
+    <div className="practExpCV">
+      <div className="posTitleInfo">
+        <strong>{positionTitle}</strong>
+        <span>
+          {dateStart} - {dateEnd}
+        </span>
       </div>
       <div>{companyName}</div>
-      <div>
-        {responsibilities ? `Responsibilities:  ${responsibilities}` : ""}
-      </div>
+      {responsibilities && <div> Responsibilities: {responsibilities}</div>}
     </div>
   );
 }
@@ -44,8 +50,19 @@ function CV({ objs }) {
   return (
     <div className="cv">
       <InfoCV person={person}></InfoCV>
-      <ExpCV exp={exp}></ExpCV>
-      <PractExpCV practExp={practExp}></PractExpCV>
+
+      <section>
+        <hr />
+        <h2>Educational experience</h2>
+        <ExpCV exp={exp}></ExpCV>
+      </section>
+
+      <section>
+        <hr />
+        <h2>Practical Experience</h2>
+        <PractExpCV practExp={practExp}></PractExpCV>
+        <hr />
+      </section>
     </div>
   );
 }

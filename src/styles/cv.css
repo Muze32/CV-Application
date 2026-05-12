@@ -1,0 +1,31 @@
+.cv {
+  background-color: #dcdcdc;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 4rem;
+}
+
+.cv > div {
+  margin-bottom: 2rem;
+}
+
+.titleInfo,
+.posTitleInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cv h2,
+.cv h1,
+.contactInfo {
+  display: flex;
+  justify-content: center;
+}
+
+.contactInfo {
+  gap: 15px;
+}
+
+hr {
+    opacity: 0.3;
+}

@@ -12,6 +12,10 @@
     margin-bottom: 1rem;
 }
 
-label, input {
+label, input, textarea {
     display: block;
+}
+
+input, textarea {
+    margin-top: .3rem;
 }
