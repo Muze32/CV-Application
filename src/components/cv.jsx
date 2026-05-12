@@ -35,7 +35,7 @@ function DateField({ dateStart, dateEnd }) {
   const date1Str = date1.toLocaleDateString();
   const date2Str = date2.toLocaleDateString();
 
-  if (!dateStart) return <span>{dateEnd}</span>;
+  if (!dateStart && dateEnd) return <span>{date2Str}</span>;
   if (date1 >= date2 || !dateEnd) return null;
 
   return (

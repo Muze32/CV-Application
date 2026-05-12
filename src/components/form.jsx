@@ -4,7 +4,7 @@ import "../styles/form.css";
 //TODO: Los inputs no realizan validacion al ingresar informacion en ellos
 
 function FormField({ field, obj, onChange }) {
-  const { name, text, type } = field;
+  const { name, text, type, placeholder } = field;
   const value = obj[name];
 
   return (
@@ -16,6 +16,7 @@ function FormField({ field, obj, onChange }) {
           value={value}
           onChange={onChange}
           name={name}
+          placeholder={placeholder || null}
         />
       ) : (
         <textarea
@@ -24,8 +25,9 @@ function FormField({ field, obj, onChange }) {
           cols="40"
           value={value}
           onChange={onChange}
-          minLength={20}
+          minLength={25}
           maxLength={100}
+          placeholder={placeholder}
         ></textarea>
       )}
     </label>

@@ -1,19 +1,42 @@
 const personFields = [
-  { text: "Name", name: "name" },
-  { text: "Email", type: "email", name: "email" },
-  { text: "Telephone", type: "tel", name: "tel" },
-  {text: "Address", name: "address"}
+  { text: "Name", name: "name", placeholder: "John Doe" },
+  {
+    text: "Email",
+    type: "email",
+    name: "email",
+    placeholder: "example@gmail.com",
+  },
+  {
+    text: "Telephone",
+    type: "tel",
+    name: "tel",
+    placeholder: "+44 222 333 4444",
+  },
+  {
+    text: "Address",
+    name: "address",
+    placeholder: "456 Maple Avenue, Apt. 2B",
+  },
 ];
 const expFields = [
-  { text: "School name", name: "organization" },
-  { text: "Title of study", name: "title" },
+  {
+    text: "School name",
+    name: "organization",
+    placeholder: "London University",
+  },
+  { text: "Title of study", name: "title", placeholder: "Electronic engineer" },
   { text: "Date of study", type: "date", name: "dateEnd" },
 ];
 
 const practExpFields = [
-  { text: "Company name", name: "organization" },
-  { text: "Position title", name: "title" },
-  { text: "Main resposibilites of your job", name: "responsibilities", type: "textarea" },
+  { text: "Company name", name: "organization", placeholder: "Google" },
+  { text: "Position title", name: "title", placeholder: "Content Manager" },
+  {
+    text: "Main resposibilites of your job",
+    name: "responsibilities",
+    type: "textarea",
+    placeholder: "Describe your main responsibilities and achievements...",
+  },
   {
     text: "Date you started working for the company",
     name: "dateStart",
